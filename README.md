@@ -36,14 +36,15 @@ Email <a.s.nagarajan@gmail.com>
 | 9 | Oracle XE 11gR2 | oracle-xe-11.2.0-1.0.x86_64.rpm.zip |
 | 10 | SQL Developer 4.0.3.16| sqldeveloper-4.0.3.16.84-1.noarch.rpm |
 | 11 | Oracle Weblogic 12c | wls_121200.jar |
-
+| 12 | Oracle JDBC Driver | ojdbc6.jar |
+| 13 | ATG DAS Protocol.jar | protocol.jar |
 
 ## Steps to set up and kickstart the Virtual Machine
 
 - Download and install Oracle VirtualBox (latest version should be fine)
 - Download and install Vagrant (latest version should be fine)
-- Download all the necessary software (To Be Installed - see table above) and place it in a folder in your host machine
-- Download the base box (an Oracle Enterprise Linux 6.6 OS) for Vagrant manually from [here](https://www.dropbox.com/s/f5jk8tym60efisp/oel66.box?dl=0) and add it to vagrant boxes list using the following command
+- Download all the necessary software (To Be Installed - see table above) and place it in a folder in your host machine. The Software listed above are all available [here](http://ppl.ug/LPZQYuf_xMI/) including the basebox 
+- Download the base box (an Oracle Enterprise Linux 6.6 OS) for Vagrant manually from [here](https://www.dropbox.com/s/f5jk8tym60efisp/oel66.box?dl=0)(if not done already) and add it to vagrant boxes list using the following command
 ```
 vagrant box add --name <<name>> <<path to the box file>>
 ```
@@ -63,3 +64,7 @@ vagrant up
 - Want to know more about **Vagrant**? Please read about vagrant [here](https://www.vagrantup.com/)
 - Want to know more about **Puppet**, Please read about what puppet has to offer [here](https://puppetlabs.com/)
 - Want to know more about **VirtualBox**, Please read the documentation [here](https://www.virtualbox.org/)
+
+## Issues
+
+- Please feel free to raise any issues that you find [here](https://github.com/nagaseshadri/puppet-vagrant-oc11.1/issues/new), I will try and look at it ASAP
