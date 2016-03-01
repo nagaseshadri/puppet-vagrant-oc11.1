@@ -9,6 +9,17 @@ Email <a.s.nagarajan@gmail.com>
 - MacOSX
 - Windows
 
+# Dependencies
+
+- biemond/orawls = 1.0.41
+- biemond/orautils = 0.3.1
+- adrien/filemapper = 1.1.3
+- reidmv/yamlfile = 0.2.0
+- fiddyspence/sleep = 1.2.0
+- puppetlabs/stdlib = 4.4.0
+- hajee/easy_type = 0.13.3
+- hajee/oracle  = 0.5.0
+
 ## Pre-requisites
 
 - A machine with atleast 16 GB RAM, as the VM would need atleast 8 GB allocated.
