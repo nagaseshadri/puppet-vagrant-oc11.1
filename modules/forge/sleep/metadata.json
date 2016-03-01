@@ -1,0 +1,30 @@
+{
+  "name": "fiddyspence-sleep",
+  "version": "1.2.0",
+  "author": "Chris Spence",
+  "license": "Apache-2.0",
+  "summary": "sleep type and provider",
+  "source": "https://github.com/fiddyspence/puppet-sleep",
+  "project_page": "https://github.com/fiddyspence/puppet-sleep",
+  "issues_url": "https://github.com/fiddyspence/puppet-sleep/issues",
+  "tags": ["sleep", "kernel","parameters"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"Redhat",
+    "operatingsystemrelease":[ "5.0", "6.0", "7.0" ]
+    },
+    {
+    "operatingsystem":"Ubuntu",
+    "operatingsystemrelease":[ "12.04","10.04","14.10" ]
+    },
+    {
+    "operatingsystem":"Windows"
+    },
+    {
+    "operatingsystem":"Debian",
+    "operatingsystemrelease":[ "5.0","6.0","7.0"] 
+    }
+   ],
+  "dependencies": [
+  ]
+}

@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Oracle Endeca Workbench
+#
+# chkconfig: 345 91 21
+# description: Oracle Endeca Workbench
+#
+################################################################################
+#
+# This is an example init.d service script for running Endeca automatically
+# on Linux systems that support 'chkconfig'. The following steps will help you
+# install Endeca as an automatic service.
+#
+# NOTE: Your Linux system must support 'chkconfig' for the following procedure.
+#
+# Review the chkconfig header at the top of this file to make sure it has
+# the appropriate runlevels, start priority, and end priority that you
+# want Endeca to start under. Consult the documention for your Linux
+# system to understand these settings.
+#
+# At a command prompt, run chkconfig to add the MDEX service. For example:
+#
+#    $ /sbin/chkconfig --add endeca-wb
+#
+################################################################################
+ 
+ENDECA_USER=<%= @endeca_user %>
+ENDECA_TOOLS_ROOT=<%= @tf_home %>
+ 
+usage() {
+  echo "Usage: ${0} (start|stop)"
+}
+ 
+case "${1}" in
+  start)
+    /bin/su - "${ENDECA_USER}" -c "${ENDECA_TOOLS_ROOT}/server/bin/startup.sh"
+    ;;
+  stop)
+    /bin/su - "${ENDECA_USER}" -c "${ENDECA_TOOLS_ROOT}/server/bin/shutdown.sh"
+    ;;
+  *)
+    usage
+    exit 2
+esac
+ 
+exit $?

@@ -1,0 +1,8 @@
+:yaml:
+    :datadir: 'hieradata'
+
+:hierarchy:
+      - 'nodes/%{::environment}/%{::clientcert}'
+      - 'nodes/%{::environment}/common'
+      - common
+

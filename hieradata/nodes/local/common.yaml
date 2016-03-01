@@ -1,0 +1,399 @@
+# hieradata/nodes/local/common.yaml
+
+# General Parameters
+
+install_user: 'vagrant'
+install_group: 'vagrant'
+
+software_mount: '/Software'
+
+temp_directory: '/tmp'
+
+# Classes to be run in this environment
+classes:
+    - java
+    - gradle
+    - atg
+    - endeca
+    - eclipse
+    - swapfile
+    - oracle_xe
+    - oracle_users
+    - sqldeveloper
+    - orawls::urandomfix
+    - orawls::weblogic
+    - orautils
+    - weblogic
+    - vagrant
+
+# Parameters For Eclipse install (Vagrant)
+
+eclipse::eclipse_gz_archive: "eclipse-jee-luna-SR1-linux-gtk-x86_64.tar.gz"
+eclipse::eclipse_tar_archive: "eclipse-jee-luna-SR1-linux-gtk-x86_64.tar"
+eclipse::eclipse_source_gz_archive: "%{hiera('software_mount')}/eclipse-jee-luna-SR1-linux-gtk-x86_64.tar.gz"
+eclipse::eclipse_install_dir:  "%{hiera('root_install_directory')}"
+eclipse::eclipse_folder: "eclipse"
+eclipse::user: "%{hiera('install_user')}"
+eclipse::group: "%{hiera('install_group')}"
+eclipse::logoutput: true
+
+# Parameters For Oracle Express Edition Install (Vagrant)
+
+oracle_xe::oracle_xe_zip: "oracle-xe-11.2.0-1.0.x86_64.rpm.zip"
+oracle_xe::oracle_xe_source_zip: "%{hiera('software_mount')}/oracle-xe-11.2.0-1.0.x86_64.rpm.zip"
+oracle_xe::oracle_xe_rpm: "oracle-xe-11.2.0-1.0.x86_64.rpm"
+oracle_xe::oracle_xe_unzip_contents: "Disk1"
+oracle_xe::oracle_xe_install_dir: "/u01/app/oracle/product/11.2.0/xe"
+oracle_xe::install_config_file: "oracle_xe_install_config.ini"
+oracle_xe::http_port: 8070
+oracle_xe::db_port: 1521
+oracle_xe::sys_password: "password"
+oracle_xe::start_on_startup: "y"
+oracle_xe::user: "%{hiera('install_user')}"
+oracle_xe::group: "%{hiera('install_group')}"
+oracle_xe::logoutput: true
+
+# Parameters for Oracle users creation (Vagrant)
+
+oracle_users::users:
+    atg_core:
+        sid: XE
+        user: atg_core
+        password: atg_core
+    atg_ca:
+        sid: XE
+        user: atg_ca
+        password: atg_ca
+    atg_cata:
+        sid: XE
+        user: atg_cata
+        password: atg_cata
+    atg_catb:
+        sid: XE
+        user: atg_catb
+        password: atg_catb
+
+
+#  Parameters For SQL Developer Install (Vagrant)
+
+sqldeveloper::sqldeveloper_archive: "file://%{hiera('software_mount')}/sqldeveloper-4.0.3.16.84-1.noarch.rpm"
+sqldeveloper::sqldeveloper_folder: "sqldeveloper"
+sqldeveloper::user: "%{hiera('install_user')}"
+sqldeveloper::group: "%{hiera('install_group')}"
+sqldeveloper::logoutput: true
+
+
+# Parameters For Swap File Creation (Vagrant - Needed for installing Oracle-XE)
+
+swapfile::filepath: "/home/swapfile"
+swapfile::filesize: 1048576
+swapfile::logoutput: true
+
+#  Parameters For Vagrant
+vagrant::workspace_directory: "/home/%{hiera('install_user')}/workspace"
+vagrant::user: vagrant
+vagrant::group: vagrant
+vagrant::homepath: '/home'
+
+# Parameters for Weblogic installation (Vagrant)
+
+wls_oracle_base_home_dir: &wls_oracle_base_home_dir "%{hiera('oracle_products_install_directory')}"
+wls_weblogic_user:          &wls_weblogic_user      "weblogic"
+wls_weblogic_password:      &wls_weblogic_password  "weblogic1"
+domain_wls_password:        *wls_weblogic_password
+
+# global WebLogic vars
+wls_weblogic_home_dir:    &wls_weblogic_home_dir    "%{hiera('oracle_products_install_directory')}/middleware12c/wlserver"
+wls_middleware_home_dir:  &wls_middleware_home_dir  "%{hiera('oracle_products_install_directory')}/middleware12c"
+wls_version:              &wls_version              1212
+
+# global OS vars
+wls_os_user:              &wls_os_user              "%{hiera('install_user')}"
+wls_os_group:             &wls_os_group             "%{hiera('install_group')}"
+wls_download_dir:         &wls_download_dir         "%{hiera('temp_directory')}"
+wls_source:               &wls_source               "%{hiera('software_mount')}"
+wls_jdk_home_dir:         &wls_jdk_home_dir         "%{hiera('java::java_install_dir')}/jdk1.7.0_55"
+wls_log_dir:              &wls_log_dir              "/data/logs"
+wls_temp_dir:             &wls_temp_dir             "%{hiera('temp_directory')}"
+
+# weblogic 12.1.2
+orawls::weblogic::version:              1212
+orawls::weblogic::filename:             "wls_121200.jar"
+
+orawls::weblogic::middleware_home_dir:  "%{hiera('oracle_products_install_directory')}/middleware12c"
+orawls::weblogic::log_output:           true
+
+# hiera default anchors
+orawls::weblogic::jdk_home_dir:         "%{hiera('java::java_install_dir')}/jdk1.7.0_55"
+orawls::weblogic::oracle_base_home_dir: "%{hiera('oracle_products_install_directory')}"
+orawls::weblogic::os_user:              "%{hiera('install_user')}"
+orawls::weblogic::os_group:             "%{hiera('install_group')}"
+orawls::weblogic::download_dir:         "%{hiera('temp_directory')}"
+orawls::weblogic::source:               "%{hiera('software_mount')}"
+orawls::weblogic::temp_directory:        "%{hiera('temp_directory')}"
+
+jarstocopytodomainlibsrc: "%{hiera('software_mount')}"
+
+jarstocopytodomainlib:
+    - protocol.jar
+
+wls_setting_instances:
+    'default':
+        user:               "vagrant"
+        weblogic_home_dir:  "/opt/oracle/product/middleware12c/wlserver"
+        connect_url:        "t3://localhost:7001"
+        weblogic_user:      "weblogic"
+        weblogic_password:  "weblogic1"
+
+domain_instances:
+    'atg_domain':
+        domain_template:      "standard"
+        domain_name:          "atg_domain"
+        development_mode:     true
+        adminserver_name:     "AdminServer"
+        adminserver_address:  "localhost"
+        adminserver_port:     7001
+        nodemanager_port:     5556
+        weblogic_password:    "weblogic1"
+        java_arguments:
+            ADM:    "-XX:PermSize=256m -XX:MaxPermSize=512m -Xms1024m -Xmx1024m"
+        log_output:           true
+
+wls_domain_instances:
+    'atg_domain':
+        jta_transaction_timeout:    1000
+
+nodemanager_instances:
+    'atgdomainnodemanager':
+        nodemanager_port:     5556
+        domain_name:          "atg_domain"
+        log_output:           true
+
+admin_control_instances:
+    'startAtgDomainAdminServer':
+        domain_name:          "atg_domain"
+        server_type:          'admin'
+        target:               'Server'
+        server:               'AdminServer'
+        action:               'start'
+        weblogic_password:    "weblogic1"
+        adminserver_address:  'localhost'
+        adminserver_port:     7001
+        nodemanager_port:     5556
+        log_output:           true
+
+managed_control_instances:
+    'startAtgDomainLiveServer':
+        domain_name:          "atg_domain"
+        server_type:          'managed'
+        target:               'Server'
+        server:               'LiveServer'
+        action:               'start'
+        weblogic_password:    "weblogic1"
+        adminserver_address:  'localhost'
+        adminserver_port:     8001
+        nodemanager_port:     5556
+        log_output:           true
+    'startAtgDomainCAServer':
+        domain_name:          "atg_domain"
+        server_type:          'managed'
+        target:               'Server'
+        server:               'CAServer'
+        action:               'start'
+        weblogic_password:    "weblogic1"
+        adminserver_address:  'localhost'
+        adminserver_port:     9001
+        nodemanager_port:     5556
+        log_output:           true
+
+datasource_instances:
+    'ATGCoreDS':
+        ensure:                      'present'
+        timeout:                     180
+        drivername:                  'oracle.jdbc.xa.client.OracleXADataSource'
+        extraproperties:
+            - 'SendStreamAsBlob=true'
+            - 'oracle.net.CONNECT_TIMEOUT=1000'
+        globaltransactionsprotocol:  'TwoPhaseCommit'
+        initialcapacity:             '5'
+        jndinames:
+            - 'ATGCoreDS'
+        maxcapacity:                 '30'
+        target:
+            - 'atg_ca'
+            - 'atg_live'
+        targettype:
+            - 'Server'
+            - 'Server'
+        testtablename:               'SQL SELECT 1 FROM DUAL'
+        url:                         "jdbc:oracle:thin:@localhost:1521:XE"
+        user:                        'atg_core'
+        password:                    'atg_core'
+        usexa:                       '1'
+    'ATGCataDS':
+        ensure:                      'present'
+        timeout:                     180
+        drivername:                  'oracle.jdbc.xa.client.OracleXADataSource'
+        extraproperties:
+            - 'SendStreamAsBlob=true'
+            - 'oracle.net.CONNECT_TIMEOUT=1000'
+        globaltransactionsprotocol:  'TwoPhaseCommit'
+        initialcapacity:             '5'
+        jndinames:
+            - 'ATGCataDS'
+        maxcapacity:                 '30'
+        target:
+            - 'atg_ca'
+            - 'atg_live'
+        targettype:
+            - 'Server'
+            - 'Server'
+        testtablename:               'SQL SELECT 1 FROM DUAL'
+        url:                         "jdbc:oracle:thin:@localhost:1521:XE"
+        user:                        'atg_cata'
+        password:                    'atg_cata'
+        usexa:                       '1'
+    'ATGCatbDS':
+        ensure:                      'present'
+        timeout:                     180
+        drivername:                  'oracle.jdbc.xa.client.OracleXADataSource'
+        extraproperties:
+            - 'SendStreamAsBlob=true'
+            - 'oracle.net.CONNECT_TIMEOUT=1000'
+        globaltransactionsprotocol:  'TwoPhaseCommit'
+        initialcapacity:             '5'
+        jndinames:
+            - 'ATGCatbDS'
+        maxcapacity:                 '15'
+        target:
+            - 'atg_ca'
+            - 'atg_live'
+        targettype:
+            - 'Server'
+            - 'Server'
+        testtablename:               'SQL SELECT 1 FROM DUAL'
+        url:                         "jdbc:oracle:thin:@localhost:1521:XE"
+        user:                        'atg_catb'
+        password:                    'atg_catb'
+        usexa:                       '1'
+    'ATGCaDS':
+        ensure:                      'present'
+        timeout:                     180
+        drivername:                  'oracle.jdbc.xa.client.OracleXADataSource'
+        extraproperties:
+            - 'SendStreamAsBlob=true'
+            - 'oracle.net.CONNECT_TIMEOUT=1000'
+        globaltransactionsprotocol:  'TwoPhaseCommit'
+        initialcapacity:             '5'
+        jndinames:
+            - 'ATGCaDS'
+        maxcapacity:                 '30'
+        target:
+            - 'atg_ca'
+        targettype:
+            - 'Server'
+        testtablename:               'SQL SELECT 1 FROM DUAL'
+        url:                         "jdbc:oracle:thin:@localhost:1521:XE"
+        user:                        'atg_ca'
+        password:                    'atg_ca'
+        usexa:                       '1'
+
+machines_instances:
+    'Node1':
+        ensure:         'present'
+        listenaddress:  'localhost'
+        listenport:     '5556'
+        machinetype:    'UnixMachine'
+        nmtype:         'SSL'
+
+server_instances:
+    'atg_live':
+        ensure:                         'present'
+        arguments:                      '-Datg.dynamo.server.name=atg_live -XX:PermSize=256m -XX:MaxPermSize=256m -Xms752m -Xmx752m -Dweblogic.Stdout=/data/logs/atg_live.out -Dweblogic.Stderr=/data/logs/atg_live_errs.out -Xdebug -Djava.compiler=NONE -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=8009,suspend=n'
+        listenaddress:                         'localhost'
+        listenport:                            '8001'
+        logfilename:                           '/data/logs/atg_live.log'
+        log_file_min_size:                     '2000'
+        log_filecount:                         '10'
+        log_number_of_files_limited:           '1'
+        log_rotate_logon_startup:              '1'
+        log_rotationtype:                      'bySize'
+        log_datasource_filename:               'logs/datasource.log'
+        log_http_filename:                     'logs/access.log'
+        machine:                               'Node1'
+        sslenabled:                            '0'
+        ssllistenport:                         '8002'
+        sslhostnameverificationignored:        '1'
+        jsseenabled:                           '1'
+        max_message_size:                      '25000000'
+        classpath:                             '/opt/oracle/product/middleware12c/user_projects/domains/atg_domain/lib/protocol.jar'
+    'atg_ca':
+        ensure:                         'present'
+        arguments:                      '-Datg.dynamo.server.name=atg_ca -XX:PermSize=256m -XX:MaxPermSize=256m -Xms752m -Xmx752m -Dweblogic.Stdout=/data/logs/atg_ca.out -Dweblogic.Stderr=/data/logs/atg_live_err.out -Xdebug -Djava.compiler=NONE -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,address=9009,suspend=n'
+        listenaddress:                         'localhost'
+        listenport:                            '9001'
+        logfilename:                           '/data/logs/atg_ca.log'
+        log_file_min_size:                     '2000'
+        log_filecount:                         '10'
+        log_number_of_files_limited:           '1'
+        log_rotate_logon_startup:              '1'
+        log_rotationtype:                      'bySize'
+        log_datasource_filename:               'logs/datasource.log'
+        log_http_filename:                     'logs/access.log'
+        machine:                               'Node1'
+        sslenabled:                            '1'
+        ssllistenport:                         '9002'
+        sslhostnameverificationignored:        '1'
+        jsseenabled:                           '0'
+        max_message_size:                      '25000000'
+        classpath:                             '/opt/oracle/product/middleware12c/user_projects/domains/atg_domain/lib/protocol.jar'
+
+cluster_instances:
+    'StorefrontCluster':
+        ensure:             'present'
+        clusteraddress:     'localhost:8001'
+        servers:
+            - 'atg_live'
+    'ManagementCluster':
+        ensure:             'present'
+        servers:
+            - 'atg_ca'
+
+app_deploy_instances:
+  'Storefront':
+    app_name:      'Storefront'
+    app_path:      '/opt/oracle/product/atg/ATG11.1/home/cimEars/atglive.ear'
+    cluster_name:  'StorefrontCluster'
+    undeploy_timeout: 60000
+    stage_mode:     'nostage'
+  'Management':
+    app_name:      'Management'
+    app_path:      '/opt/oracle/product/atg/ATG11.1/home/cimEars/atgca.ear'
+    cluster_name:  'ManagementCluster'
+    undeploy_timeout: 60000
+    stage_mode:     'nostage'
+
+orautils::osOracleHomeParam:      "/opt/oracle/product"
+orautils::oraInventoryParam:      "/opt/oracle/product/oraInventory"
+orautils::osDomainTypeParam:      "admin"
+orautils::osLogFolderParam:       "/data/logs"
+orautils::osDownloadFolderParam:  "/tmp"
+orautils::osMdwHomeParam:         "/opt/oracle/product/middleware12c"
+orautils::osWlHomeParam:          "/opt/oracle/product/middleware12c/wlserver"
+orautils::oraUserParam:           "vagrant"
+orautils::oraGroupParam:          "vagrant"
+
+orautils::osDomainParam:          "atg_domain"
+orautils::osDomainPathParam:      "/opt/oracle/product/middleware12c/user_projects/domains/atg_domain"
+orautils::nodeMgrPathParam:       "/opt/oracle/product/middleware12c/user_projects/domains/atg_domain/bin"
+
+orautils::nodeMgrPortParam:       5556
+orautils::nodeMgrAddressParam:    'localhost'
+orautils::wlsUserParam:           "weblogic"
+orautils::wlsPasswordParam:       "weblogic1"
+orautils::wlsAdminServerParam:    "AdminServer"
+orautils::jsseEnabledParam:       false
+
+adminserver_address:  "localhost"
+adminserver_port:     7001
+

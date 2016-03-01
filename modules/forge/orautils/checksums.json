@@ -1,0 +1,20 @@
+{
+  "CHANGELOG.md": "2718e4d7ca96322dfc4230f7dbedf9af",
+  "Gemfile": "3a5d9751e4e24b862b1fda2f507d33a2",
+  "License": "da7d8b642432b13765207d2c382a6555",
+  "README.md": "24924759f392cb45ceb7adb4754bfa75",
+  "Rakefile": "773d3ed1165f02fc1a9527c45b701011",
+  "manifests/init.pp": "3b29454688c9058a75c8f43b8fab022a",
+  "manifests/nodemanagerautostart.pp": "378f6063d7c859ad51f42826a128f2d8",
+  "manifests/params.pp": "7cff32a421adead03bc78288697216d0",
+  "metadata.json": "a936c11e5a431cb3f8de38983169aad2",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+  "templates/cleanOracleEnvironment.sh.erb": "63636e77f83cae80380134b60bef257a",
+  "templates/nodemanager.erb": "6e0d67ee7273a9a042d154c258c99e63",
+  "templates/startNodeManager.sh.erb": "c2de26ae12d87d415823bc3113d83ec1",
+  "templates/startWeblogicAdmin.sh.erb": "0e1e4c08487f077872fd551d6913c99c",
+  "templates/stopWeblogicAdmin.sh.erb": "60ae29d5e53046aeaedaf5324433c3be",
+  "templates/wls/showStatus.sh.erb": "a7ef266511757b8b6fe14c9668c28445",
+  "templates/wls/stopNodeManager.sh.erb": "e93ad2e724aa6e0412dfd3851b655c6d"
+}

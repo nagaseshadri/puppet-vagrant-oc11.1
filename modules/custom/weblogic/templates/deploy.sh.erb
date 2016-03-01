@@ -1,0 +1,4 @@
+cd <%= @wls_weblogic_home_dir %>/common/bin
+./wlst.sh /opt/scripts/wls/stop<%= @cluster_name %>.py
+./wlst.sh /opt/scripts/wls/deploy<%= @app_name %>.py
+./wlst.sh /opt/scripts/wls/start<%= @cluster_name %>.py

@@ -1,0 +1,18 @@
+connect('<%= @wls_user_name %>','<%= @wls_password %>', 't3://<%= @admin_hostname %>:<%= @admin_port %>')
+
+edit()
+startEdit()
+
+try:
+    undeploy(appName='<%= @app_name %>',  timeout=<%= @undeploy_timeout %>)
+    deploy(appName='<%= @app_name %>', path='<%= @app_path %>', targets='<%= @cluster_name %>', stageMode='<%= @stage_mode %>')
+    save()
+    activate()          
+    print "~~~~COMMAND SUCCESFULL~~~~"
+
+except:
+    print "Unexpected error:", sys.exc_info()[0]
+    undo('true','y')
+    stopEdit('y')
+    print "~~~~COMMAND FAILED~~~~"
+    raise

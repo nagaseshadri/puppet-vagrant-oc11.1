@@ -1,0 +1,26 @@
+#vagrant_config.yaml
+
+box:
+     name: naga/oel66   # Name of the vagrantbox to use as a basebox
+     box_url: https://www.dropbox.com/s/f5jk8tym60efisp/oel66.box?dl=0    # URL to download the box from if not available locally - Get it from the Stick
+     box_update: false  # Switching it off, Only required if we use Vagrant Cloud
+vm:
+    name: OC11.1VM # Name as it is expected to appear in VirtualBox
+    memory: 8192 # In MB
+    hostname: oc11vm # Host name set in /etc/hosts, HOSTNAME env variable and /etc/hostname
+    ip_address: 192.168.33.10 # IP Address to be assigned to the Virtual Box
+    boot_timeout: 1000 # Timeout period within which Vagrant will try to communicate with the Guest VM
+
+port_mappings: #guest-port: host-port
+    8006: 8006
+    15000: 15000
+    15002: 15002
+
+shares: # Mount point on guest (/ will be prepended): Host folder path
+    Software: /Users/Naga/Downloads/Commerce11 #  /Software inside the VM has the contents of /Users/Naga/Downloads/Commerce11 folder on the host
+
+gitconfig: # Configs to be set in ~/.gitconfig
+    user.name: Naga Seshadri
+    user.email: 
+
+#vagrant box add --name naga/oel66 /Users/Naga/Work/Downloads/oel66.box 

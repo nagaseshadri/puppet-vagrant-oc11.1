@@ -1,0 +1,156 @@
+# /vagrant/hieradata/common.yaml
+
+# General Parameters
+
+software_mount: '/shareb2b/OC'
+install_user: ''
+install_group: ''
+root_install_directory: '/opt'
+oracle_products_install_directory: "%{hiera('root_install_directory')}/oracle/product"
+temp_directory: '/opt/tmp'
+
+classes:
+    - stdlib
+    - easy_type
+    - common
+
+# Parameters For Java Install
+
+java::java_archive: 'jdk-7u55-linux-x64.tar.gz'
+java::java_install_dir:  "%{hiera('oracle_products_install_directory')}/java"
+java::java_folder: 'jdk1.7.0_55'
+java::java_source_archive: "%{hiera('software_mount')}/jdk-7u55-linux-x64.tar.gz"
+java::user: "%{hiera('install_user')}"
+java::group: "%{hiera('install_group')}"
+java::logoutput: true
+
+# Parameters For Gradle Install
+
+gradle::gradle_archive: 'gradle-2.2-all.zip'
+gradle::gradle_install_dir: "%{hiera('root_install_directory')}/gradle"
+gradle::gradle_folder: 'gradle-2.2'
+gradle::gradle_source_archive: "%{hiera('software_mount')}/gradle-2.2-all.zip"
+gradle::user: "%{hiera('install_user')}"
+gradle::group: "%{hiera('install_group')}"
+gradle::logoutput: true
+
+# Parameters For ATG Install
+
+atg::atg_archive: 'V46005-01.zip'
+atg::atg_folder: 'ATG11.1'
+atg::atg_install_dir: "%{hiera('oracle_products_install_directory')}/atg"
+atg::atg_bin_file: 'OCPlatform11.1.bin'
+atg::atg_source_archive: "%{hiera('software_mount')}/V46005-01.zip"
+atg::atg_install_config_file: "installer.properties"
+atg::user: "%{hiera('install_user')}"
+atg::group: "%{hiera('install_group')}"
+atg::logoutput: true
+
+# Parameters for Endeca Installation
+
+endeca::endeca_home: "%{hiera('oracle_products_install_directory')}/endeca"
+endeca::apps_folder_path: "%{hiera('oracle_products_install_directory')}/endeca/apps"
+endeca::user: "%{hiera('install_user')}"
+endeca::group: "%{hiera('install_group')}"
+
+# Parameters For Endeca Content Acquisition Services Install
+
+endeca::cas::cas_archive: "V46393-01.zip"
+endeca::cas::cas_source_archive: "%{hiera('software_mount')}/V46393-01.zip"
+endeca::cas::cas_version: "11.1.0"
+endeca::cas::install_dir: "%{hiera('oracle_products_install_directory')}"
+endeca::cas::cas_install_dir: "%{hiera('oracle_products_install_directory')}/endeca/CAS"
+endeca::cas::install_config_ini: "endeca_cas_install_config.ini"
+endeca::cas::endeca_tools_root: "%{hiera('oracle_products_install_directory')}/endeca/ToolsAndFrameworks/11.1.0"
+endeca::cas::endeca_tools_conf: "%{hiera('oracle_products_install_directory')}/endeca/ToolsAndFrameworks/11.1.0/server/workspace"
+endeca::cas::cas_sh_file: "OCcas11.1.0-Linux64.sh"
+endeca::cas::cas_server_port: 8500
+endeca::cas::cas_shutdown_port: 8506
+endeca::cas::cas_server_host: localhost
+endeca::cas::user: "%{hiera('install_user')}"
+endeca::cas::group: "%{hiera('install_group')}"
+endeca::cas::logoutput: true
+
+# Parameters For Endeca Tools and Frameworks Install
+
+endeca::tf::tf_archive: "V46389-01.zip"
+endeca::tf::tf_source_archive: "%{hiera('software_mount')}/V46389-01.zip"
+endeca::tf::tf_version: "11.1.0"
+endeca::tf::tf_install_dir: "%{hiera('oracle_products_install_directory')}/endeca/ToolsAndFrameworks"
+endeca::tf::install_dir: "%{hiera('oracle_products_install_directory')}"
+endeca::tf::tf_unzip_root_dir: "%{hiera('temp_directory')}/cd"
+endeca::tf::tf_unzip_contents: "%{hiera('temp_directory')}/cd/Disk1/install"
+endeca::tf::tf_sh_file: "silent_install.sh"
+endeca::tf::tf_silent_response_file: "silent_response.rsp"
+endeca::tf::tf_oracle_home_key: "ToolsandFrameworks"
+endeca::tf::tf_admin_password: "admin"
+endeca::tf::user: "%{hiera('install_user')}"
+endeca::tf::group: "%{hiera('install_group')}"
+endeca::tf::logoutput: true
+
+# Parameters For Endeca MDEX Install
+
+endeca::mdex::mdex_archive: "V46002-01.zip"
+endeca::mdex::mdex_install_dir: "%{hiera('oracle_products_install_directory')}/endeca/MDEX"
+endeca::mdex::mdex_version: "6.5.1"
+endeca::mdex::install_dir: "%{hiera('oracle_products_install_directory')}"
+endeca::mdex::mdex_source_archive: "%{hiera('software_mount')}/V46002-01.zip"
+endeca::mdex::mdex_sh_file: "OCmdex6.5.1-Linux64_829811.sh"
+endeca::mdex::presApi_tgz_file: "OCpresAPI6.5.1-Linux64_829811.tgz"
+endeca::mdex::user: "%{hiera('install_user')}"
+endeca::mdex::group: "%{hiera('install_group')}"
+endeca::mdex::logoutput: false
+
+# Parameters For Endeca Platform Services Install
+
+endeca::ps::ps_archive: "V45999-01.zip"
+endeca::ps::ps_source_archive: "%{hiera('software_mount')}/V45999-01.zip"
+endeca::ps::ps_version: "11.1.0"
+endeca::ps::ps_install_dir: "%{hiera('oracle_products_install_directory')}/endeca/PlatformServices"
+endeca::ps::ps_bin_file: "OCplatformservices11.1.0-Linux64.bin"
+endeca::ps::install_dir: "%{hiera('oracle_products_install_directory')}"
+endeca::ps::install_config_ini: "endeca_ps_install_config.ini"
+endeca::ps::http_service_listen_port: 8888
+endeca::ps::http_service_shutdown_port: 8090
+endeca::ps::mdex_home: "%{hiera('oracle_products_install_directory')}/endeca/MDEX/%{hiera('endeca::mdex::mdex_version')}"
+endeca::ps::user: "%{hiera('install_user')}"
+endeca::ps::group: "%{hiera('install_group')}"
+endeca::ps::logoutput: true
+
+# Parameters For Endeca Services Install
+
+endeca::services::cas_root: "%{hiera('endeca::cas::cas_install_dir')}/%{hiera('endeca::cas::cas_version')}"
+endeca::services::cas_workspace: "%{hiera('endeca::services::cas_root')}/../workspace"
+endeca::services::tf_home: "%{hiera('endeca::tf::tf_install_dir')}/%{hiera('endeca::tf::tf_version')}"
+endeca::services::mdex_home: "%{hiera('endeca::mdex::mdex_install_dir')}/%{hiera('endeca::mdex::mdex_version')}"
+endeca::services::ps_install_dir: "%{hiera('endeca::ps::ps_install_dir')}"
+endeca::services::user: "%{hiera('install_user')}"
+
+wls_weblogic_home_dir: "/opt/oracle/product/middleware12c/wlserver"
+domain_name: "atg_domain"
+
+# Used by SQLDeveloper Manifest
+
+schemas:
+ - hostname: localhost
+   description: Core
+   schema: atg_core
+   sid: XE
+   portNumber: 1521
+ - hostname: localhost
+   description: Catalog A
+   schema: atg_cata
+   sid: XE
+   portNumber: 1521
+ - hostname: localhost
+   description: Catalog B
+   schema: atg_catb
+   sid: XE
+   portNumber: 1521
+ - hostname: localhost
+   description: CA
+   schema: atg_ca
+   sid: XE
+   portNumber: 1521
+
+
