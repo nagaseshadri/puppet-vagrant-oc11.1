@@ -75,6 +75,10 @@ vagrant up
 - Want to know more about **Vagrant**? Please read about vagrant [here](https://www.vagrantup.com/)
 - Want to know more about **Puppet**, Please read about what puppet has to offer [here](https://puppetlabs.com/)
 - Want to know more about **VirtualBox**, Please read the documentation [here](https://www.virtualbox.org/)
+- Want to know Whats new in Oracle Commerce 11.1, Read it [here](http://www.oracle.com/technetwork/apps-tech/commerce/overview/oc-11-1-0-whatsnew-2245182.pdf)
+- For Oracle Commerce Supported Environments Matrix, Click [here](https://support.oracle.com/epmos/faces/DocumentDisplay?id=1908576.1)
+- [ATG Commerce Documentation](http://www.oracle.com/technetwork/documentation/atgwebcommerce-393465.html)
+- [Endeca Guided Search Documentation](http://www.oracle.com/technetwork/indexes/documentation/endecaguidedsearch-1552767.html)
 
 ## Issues
 
