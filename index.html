@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Puppet-vagrant-oc11.1 by nagaseshadri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Puppet-vagrant-oc11.1</h1>
+      <h2 class="project-tagline">Vagrant + Puppet module for firing up an Oracle Commerce 11.1 VM / Managed node in no time</h2>
+      <a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1" class="btn">View on GitHub</a>
+      <a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="oracle-commerce-vm--managed-environments---vagrant--puppet" class="anchor" href="#oracle-commerce-vm--managed-environments---vagrant--puppet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Oracle Commerce VM + Managed Environments - Vagrant + Puppet</h1>
+
+<p>Created by <strong>Naga</strong>rajan Seshadri<br>
+Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
+<a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1">Github homepage</a></p>
+
+<h2>
+<a id="supported-environments" class="anchor" href="#supported-environments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported Environments</h2>
+
+<ul>
+<li>MacOSX</li>
+<li>Windows</li>
+</ul>
+
+<h1>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h1>
+
+<ul>
+<li>biemond/orawls = 1.0.41</li>
+<li>biemond/orautils = 0.3.1</li>
+<li>adrien/filemapper = 1.1.3</li>
+<li>reidmv/yamlfile = 0.2.0</li>
+<li>fiddyspence/sleep = 1.2.0</li>
+<li>puppetlabs/stdlib = 4.4.0</li>
+<li>hajee/easy_type = 0.13.3</li>
+<li>hajee/oracle  = 0.5.0</li>
+</ul>
+
+<h2>
+<a id="pre-requisites" class="anchor" href="#pre-requisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pre-requisites</h2>
+
+<ul>
+<li>A machine with atleast 16 GB RAM, as the VM would need atleast 8 GB allocated.</li>
+<li>The VM is designed to expand dynamically upto 60 GB - so its better to have atleast 75 GB of free space on your host machine</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Build an Oracle Commerce 11.1 Oracle Linux 6.6 based VM from Ground up using Vagrant + Puppet Modules/Manifests. </li>
+<li>The same puppet configs can be used to configure and manage your managed environments - Dev/Test/Acceptance/Production</li>
+</ul>
+
+<h2>
+<a id="needed-software-installables" class="anchor" href="#needed-software-installables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Needed Software Installables</h2>
+
+<ul>
+<li>Software installables to be made available in the /Software mount point - folder corresponding to /Users/Naga/Downloads/Commerce11  in the host machine (refer to <strong>vagrant_config.tmp.yaml</strong>)</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th align="left">Software Name</th>
+<th align="left">Installable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td align="left">JDK</td>
+<td align="left">jdk-7u55-linux-x64.tar.gz</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="left">Gradle</td>
+<td align="left">gradle-2.2-all.zip</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="left">ATG 11.1</td>
+<td align="left">V46005-01.zip</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="left">Endeca CAS 11.1</td>
+<td align="left">V46393-01.zip</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="left">Endeca Tools &amp; Frameworks 11.1</td>
+<td align="left">V46389-01.zip</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="left">Endeca MDEX 6.5.1</td>
+<td align="left">V46002-01.zip</td>
+</tr>
+<tr>
+<td>7</td>
+<td align="left">Endeca Platform Service 11.1</td>
+<td align="left">V45999-01.zip</td>
+</tr>
+<tr>
+<td>8</td>
+<td align="left">Eclipse Luna</td>
+<td align="left">eclipse-jee-luna-SR1-linux-gtk-x86_64.tar.gz</td>
+</tr>
+<tr>
+<td>9</td>
+<td align="left">Oracle XE 11gR2</td>
+<td align="left">oracle-xe-11.2.0-1.0.x86_64.rpm.zip</td>
+</tr>
+<tr>
+<td>10</td>
+<td align="left">SQL Developer 4.0.3.16</td>
+<td align="left">sqldeveloper-4.0.3.16.84-1.noarch.rpm</td>
+</tr>
+<tr>
+<td>11</td>
+<td align="left">Oracle Weblogic 12c</td>
+<td align="left">wls_121200.jar</td>
+</tr>
+<tr>
+<td>12</td>
+<td align="left">Oracle JDBC Driver</td>
+<td align="left">ojdbc6.jar</td>
+</tr>
+<tr>
+<td>13</td>
+<td align="left">ATG DAS Protocol.jar</td>
+<td align="left">protocol.jar</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="steps-to-set-up-and-kickstart-the-virtual-machine" class="anchor" href="#steps-to-set-up-and-kickstart-the-virtual-machine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Steps to set up and kickstart the Virtual Machine</h2>
+
+<ul>
+<li>Download and install Oracle VirtualBox (latest version should be fine)</li>
+<li>Download and install Vagrant (latest version should be fine)</li>
+<li>Download all the necessary software (To Be Installed - see table above) and place it in a folder in your host machine. The Software listed above are all available <a href="http://ppl.ug/LPZQYuf_xMI/">here</a> including the basebox </li>
+<li>Download the base box (an Oracle Enterprise Linux 6.6 OS) for Vagrant manually from <a href="https://www.dropbox.com/s/f5jk8tym60efisp/oel66.box?dl=0">here</a>(if not done already) and add it to vagrant boxes list using the following command</li>
+</ul>
+
+<pre><code>vagrant box add --name &lt;&lt;name&gt;&gt; &lt;&lt;path to the box file&gt;&gt;
+</code></pre>
+
+<ul>
+<li>Make a copy of the <a href="./vagrant_config.tmp.yaml">vagrant_config.tmp.yaml </a> to create a vagrant_config.yaml ( This file is not checkedin to avoid merge issues - the tmp is only a reference file, the Vagrant config is looking for a file named vagrant_config.yaml ) and edit it according to your setup / needs</li>
+<li>Start the VM by running the following command from Terminal or Command prompt, this will try and import the base box and run provision to install the software needed - You can decide and update what to install by updating the classes section in <a href="./hieradata/nodes/local/common.yaml">common.yaml</a>
+</li>
+</ul>
+
+<pre><code>vagrant up
+</code></pre>
+
+<h2>
+<a id="planned-for-future" class="anchor" href="#planned-for-future" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Planned for future</h2>
+
+<ul>
+<li>Support for JBoss EAP</li>
+<li>Installing Commerce Reference Store 11.1</li>
+</ul>
+
+<h2>
+<a id="references--appendix" class="anchor" href="#references--appendix" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References / Appendix</h2>
+
+<ul>
+<li>Want to know more about <strong>Vagrant</strong>? Please read about vagrant <a href="https://www.vagrantup.com/">here</a>
+</li>
+<li>Want to know more about <strong>Puppet</strong>, Please read about what puppet has to offer <a href="https://puppetlabs.com/">here</a>
+</li>
+<li>Want to know more about <strong>VirtualBox</strong>, Please read the documentation <a href="https://www.virtualbox.org/">here</a>
+</li>
+<li>Want to know Whats new in Oracle Commerce 11.1, Read it <a href="http://www.oracle.com/technetwork/apps-tech/commerce/overview/oc-11-1-0-whatsnew-2245182.pdf">here</a>
+</li>
+<li>For Oracle Commerce Supported Environments Matrix, Click <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?id=1908576.1">here</a>
+</li>
+<li><a href="http://www.oracle.com/technetwork/documentation/atgwebcommerce-393465.html">ATG Commerce Documentation</a></li>
+<li><a href="http://www.oracle.com/technetwork/indexes/documentation/endecaguidedsearch-1552767.html">Endeca Guided Search Documentation</a></li>
+</ul>
+
+<h2>
+<a id="issues" class="anchor" href="#issues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues</h2>
+
+<ul>
+<li>Please feel free to raise any issues that you find <a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1/issues/new">here</a>, I will try and look at it ASAP</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1">Puppet-vagrant-oc11.1</a> is maintained by <a href="https://github.com/nagaseshadri">nagaseshadri</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-7690760-6");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
