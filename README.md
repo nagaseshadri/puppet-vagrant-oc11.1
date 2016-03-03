@@ -1,4 +1,4 @@
-# Oracle Commerce VM + Managed Environments - Vagrant + Puppet
+## Oracle Commerce VM + Managed Environments - Vagrant + Puppet
 
 Created by **Naga**rajan Seshadri  
 Email <a.s.nagarajan@gmail.com>  
@@ -9,7 +9,7 @@ Email <a.s.nagarajan@gmail.com>
 - MacOSX
 - Windows
 
-# Dependencies
+## Dependencies
 
 - biemond/orawls = 1.0.41
 - biemond/orautils = 0.3.1
@@ -29,6 +29,12 @@ Email <a.s.nagarajan@gmail.com>
 
 - Build an Oracle Commerce 11.1 Oracle Linux 6.6 based VM from Ground up using Vagrant + Puppet Modules/Manifests. 
 - The same puppet configs can be used to configure and manage your managed environments - Dev/Test/Acceptance/Production
+- Puppet Manifests for installing the following are packed in this project - JDK, Gradle, ATG, Endeca, Weblogic, Oracle XE, SQLDeveloper, Eclipse 
+- Puppet hiera configs available for 
+  - Creating 4 database schemas on Oracle XE - atg_core, atg_ca, atg_cata and atg_catb
+  - Installing and Configuring Weblogic AdminServer and NodeManager
+  - Creating 2 managed weblogic nodes - Storefront (Live/Production) and Management (CA/BCC)
+  - Configuring Datasources and targeting them to servers - ATGCoreDS, ATGCataDS, ATGCatbDS, ATGCaDS
 
 ## Needed Software Installables
 
@@ -65,6 +71,11 @@ vagrant box add --name <<name>> <<path to the box file>>
 vagrant up
 ```
 
+## Whats in the box ?
+
+- The vagrant box (oel66.box) comes with git and puppet preinstalled.
+- Its configured to have a disk that cab expan upto 60GB, which should be sufficient for most of the development purposes.
+
 ## Planned for future
 
 - Support for JBoss EAP
@@ -80,6 +91,7 @@ vagrant up
 - [ATG Commerce Documentation](http://www.oracle.com/technetwork/documentation/atgwebcommerce-393465.html)
 - [Endeca Guided Search Documentation](http://www.oracle.com/technetwork/indexes/documentation/endecaguidedsearch-1552767.html)
 
-## Issues
+## Issues / Feedback
 
 - Please feel free to raise any issues that you find [here](https://github.com/nagaseshadri/puppet-vagrant-oc11.1/issues/new), I will try and look at it ASAP
+- Please provide your valuable feedback / improvements by writing to me at the email provided above, you can also write me if you need help with setting up your managed environment using the same configs, I am happy to help wherever needed.
