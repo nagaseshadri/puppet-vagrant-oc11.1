@@ -19,8 +19,8 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="oracle-commerce-vm--managed-environments---vagrant--puppet" class="anchor" href="#oracle-commerce-vm--managed-environments---vagrant--puppet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Oracle Commerce VM + Managed Environments - Vagrant + Puppet</h1>
+      <h2>
+<a id="oracle-commerce-vm--managed-environments---vagrant--puppet" class="anchor" href="#oracle-commerce-vm--managed-environments---vagrant--puppet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Oracle Commerce VM + Managed Environments - Vagrant + Puppet</h2>
 
 <p>Created by <strong>Naga</strong>rajan Seshadri<br>
 Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
@@ -34,8 +34,8 @@ Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
 <li>Windows</li>
 </ul>
 
-<h1>
-<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h1>
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
 
 <ul>
 <li>biemond/orawls = 1.0.41</li>
@@ -62,6 +62,16 @@ Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
 <ul>
 <li>Build an Oracle Commerce 11.1 Oracle Linux 6.6 based VM from Ground up using Vagrant + Puppet Modules/Manifests. </li>
 <li>The same puppet configs can be used to configure and manage your managed environments - Dev/Test/Acceptance/Production</li>
+<li>Puppet Manifests for installing the following are packed in this project - JDK, Gradle, ATG, Endeca, Weblogic, Oracle XE, SQLDeveloper, Eclipse </li>
+<li>Puppet hiera configs available for 
+
+<ul>
+<li>Creating 4 database schemas on Oracle XE - atg_core, atg_ca, atg_cata and atg_catb</li>
+<li>Installing and Configuring Weblogic AdminServer and NodeManager</li>
+<li>Creating 2 managed weblogic nodes - Storefront (Live/Production) and Management (CA/BCC)</li>
+<li>Configuring Datasources and targeting them to servers - ATGCoreDS, ATGCataDS, ATGCatbDS, ATGCaDS</li>
+</ul>
+</li>
 </ul>
 
 <h2>
@@ -171,6 +181,14 @@ Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
 </code></pre>
 
 <h2>
+<a id="whats-in-the-box-" class="anchor" href="#whats-in-the-box-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Whats in the box ?</h2>
+
+<ul>
+<li>The vagrant box (oel66.box) comes with git and puppet preinstalled.</li>
+<li>Its configured to have a disk that cab expan upto 60GB, which should be sufficient for most of the development purposes.</li>
+</ul>
+
+<h2>
 <a id="planned-for-future" class="anchor" href="#planned-for-future" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Planned for future</h2>
 
 <ul>
@@ -197,10 +215,11 @@ Email <a href="mailto:a.s.nagarajan@gmail.com">a.s.nagarajan@gmail.com</a><br>
 </ul>
 
 <h2>
-<a id="issues" class="anchor" href="#issues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues</h2>
+<a id="issues--feedback" class="anchor" href="#issues--feedback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues / Feedback</h2>
 
 <ul>
 <li>Please feel free to raise any issues that you find <a href="https://github.com/nagaseshadri/puppet-vagrant-oc11.1/issues/new">here</a>, I will try and look at it ASAP</li>
+<li>Please provide your valuable feedback / improvements by writing to me at the email provided above, you can also write me if you need help with setting up your managed environment using the same configs, I am happy to help wherever needed.</li>
 </ul>
 
       <footer class="site-footer">
