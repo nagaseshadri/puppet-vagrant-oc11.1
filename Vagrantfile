@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Ports Forwarded from Guest to Host - Mapping
   vconfig['port_mappings'].each do |key, value|
-    config.vm.network "forwarded_port", guest: key, host: value
+    config.vm.network "forwarded_port", guest: key, host: value, auto_correct: true
   end
 
   # Create a private network, which allows host-only access to the machine
