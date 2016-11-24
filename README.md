@@ -55,6 +55,7 @@ Email <a.s.nagarajan@gmail.com>
 | 11 | Oracle Weblogic 12c | wls_121200.jar |
 | 12 | Oracle JDBC Driver | ojdbc6.jar |
 | 13 | ATG DAS Protocol.jar | protocol.jar |
+| 14 | ATG Commerce Reference Store 11.1 | V46007-01.zip |
 
 ## Steps to set up and kickstart the Virtual Machine
 
