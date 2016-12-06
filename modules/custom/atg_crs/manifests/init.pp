@@ -3,7 +3,7 @@ class atg_crs ( $atg_crs_archive , $atg_crs_install_config_file, $atg_crs_folder
     $atg_home = "${atg_crs_install_dir}/${atg_crs_folder}"
     $temp_directory = hiera('temp_directory')
 
-    require common, java
+    require common, java, atg
 
     Exec {
         path => [ "/usr/bin", "/bin", "/usr/sbin", "${temp_directory}"]
@@ -30,12 +30,6 @@ class atg_crs ( $atg_crs_archive , $atg_crs_install_config_file, $atg_crs_folder
             content => template("${module_name}/${atg_crs_install_config_file}.erb")
         }
         -> 
-        file { 'atg crs install folder' :
-            path => "${atg_crs_install_dir}",
-            ensure => directory,
-            owner => "${user}"
-        }
-        ->
         exec { 'execute atg crs bin':
             cwd => "${temp_directory}",
             timeout => 0,
