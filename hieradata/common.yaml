@@ -53,7 +53,7 @@ atg_crs::atg_crs_folder: 'ATG11.1'
 atg_crs::atg_crs_install_dir: "%{hiera('oracle_products_install_directory')}/atg"
 atg_crs::atg_crs_bin_file: 'OCReferenceStore11.1.bin'
 atg_crs::atg_crs_source_archive: "%{hiera('software_mount')}/V46007-01.zip"
-atg_crs::atg_crs_install_config_file: "installer.properties"
+atg_crs::atg_crs_install_config_file: "crsinstaller.properties"
 atg_crs::user: "%{hiera('install_user')}"
 atg_crs::group: "%{hiera('install_group')}"
 atg_crs::logoutput: true
